@@ -1,0 +1,20 @@
+[
+  {
+    "stu_id": "改成你的学号/账号。以下全部内容详细解释请看与此文件同目录的students_data_explain.txt",
+    "password": "改成你的账号密码",
+    "health_data_dict": {
+      "id": "",
+      "mqjk": "健康",
+      "jrjk": "健康",
+      "city1": "改成你的省份",
+      "city2": "改成某市",
+      "city3": "改成某县区",
+      "sfwc": "0",
+      "sfjc": "0",
+      "sfhb": "0",
+      "zb": "不清楚",
+      "jchz": "否",
+      "other": "改成你的备注"
+    }
+  }
+]
