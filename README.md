@@ -1,7 +1,20 @@
 # health-data-post
 暂时仅适用于“智慧山水”平台，仅供学习交流使用。
 
+#### 所需软件及版本
+
+以下是我所使用的软件版本，其他版本请自行测试。
+
+操作系统：![Windows](https://img.shields.io/badge/Windows10-1909-Deepskyblue.svg)
+
+开发工具：![Python](https://img.shields.io/badge/Python-3.8.2-blue.svg)![PiP](https://img.shields.io/badge/pip-20.0.2-5e7c85.svg)![lxml](https://img.shields.io/badge/lxml-4.5.0-Lime.svg)![Requests](https://img.shields.io/badge/requests-2.23.0-yellowgreen.svg)![urllib3](https://img.shields.io/badge/urllib3-1.25.8-Tomato.svg)
+
+#### 使用说明
 **students_data_explain.md是用来指导配置用户信息的，必读！！！**
+
+#### 设置定时启动请查看
+
+[定时启动说明：Regular_operation.md](./Regular_operation.md)（若不能点击请手动查看此文件）
 
 #### 更新记录
 
