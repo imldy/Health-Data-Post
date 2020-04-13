@@ -10,11 +10,11 @@
 开发工具：![Python](https://img.shields.io/badge/Python-3.8.2-blue.svg)![PiP](https://img.shields.io/badge/pip-20.0.2-5e7c85.svg)![lxml](https://img.shields.io/badge/lxml-4.5.0-Lime.svg)![Requests](https://img.shields.io/badge/requests-2.23.0-yellowgreen.svg)![urllib3](https://img.shields.io/badge/urllib3-1.25.8-Tomato.svg)
 
 #### 使用说明
-**students_data_explain.md是用来指导配置用户信息的，必读！！！**
+**用来指导配置用户信息的，必读！！！[students_data_explain.md](./students_data_explain.md)**
 
-#### 设置定时启动请查看
+#### 设置定时启动
 
-[定时启动说明：Regular_operation.md](./Regular_operation.md)（若不能点击请手动查看此文件）
+定时启动说明：[Regular_operation.md](./Regular_operation.md)
 
 #### 更新记录
 
