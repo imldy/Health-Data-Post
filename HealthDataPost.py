@@ -47,38 +47,45 @@ class Student(object):
                 prompt_info = html1.xpath("//div[@class='title']/text()")[0]
             except IndexError:
                 # 如果没找到提示今天已经上报的信息而报错了，就初步判断今天还没上报
-                if ("您已上报" in res1) and ("健康信息" in res1):
-                    # 如果固定位置没找到提示信息，但是网页其他地方找到了
-                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 警告：网站发生变化，推荐手动确认网页情况，以免发生错误")
-                else:
-                    # 如果固定位置没找到提示信息，且网页源码都未发现相关提示
-                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 判断为还未提报今日身体信息")
-                    time.sleep(3)
-                    # 提交的准备工作，设置当前日期。
-                    cls.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
-                    # 提交
-                    # 直接提交汉字可能会出错，URL编码处理
-                    WebSite.submit_api_url_and_data = WebSite.submit_api_url + parse.urlencode(cls.health_data_dict)
-                    # 设置提交数据api的请求头中的Referer
-                    WebSite.submit_api_headers["Referer"] = WebSite.form_web_url
-
-                    res = session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
-                    # 通过返回结果判断本次是否提交成功
-                    if "OK" in res.text and res.status_code == 200:
-                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 本次提报成功")
-                        time.sleep(1)
-                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
-                    else:
-                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 错误：本次提报失败，详情查看：" + res.text)
-                        time.sleep(1)
-                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                print("未找到是否上报的提示信息")
             else:
-                # 没报错就代表已经提交了
+                # 没报错就代表提取到是否上报的提示信息了
                 # 去除提示信息前后的空格
                 prompt_info = prompt_info.strip()
-                print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + prompt_info)
-                time.sleep(1)
-                print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                # 根据提示信息判断是否提交
+                if "您已上报" not in prompt_info:
+                    # 固定位置未找到已提交的提示信息
+                    if ("您已上报" in res1) and ("健康信息" in res1):
+                        # 如果固定位置没找到提示信息，但是网页其他地方找到了
+                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 警告：网站发生变化，推荐手动确认网页情况，以免发生错误")
+                    else:
+                        # 如果固定位置没找到提示信息，且网页源码都未发现相关提示
+                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 判断为还未提报今日身体信息")
+                        time.sleep(3)
+                        # 提交的准备工作，设置当前日期。
+                        cls.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
+                        # 提交
+                        # 直接提交汉字可能会出错，URL编码处理
+                        WebSite.submit_api_url_and_data = WebSite.submit_api_url + parse.urlencode(cls.health_data_dict)
+                        # 设置提交数据api的请求头中的Referer
+                        WebSite.submit_api_headers["Referer"] = WebSite.form_web_url
+
+                        res = session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
+                        # 通过返回结果判断本次是否提交成功
+                        if "OK" in res.text and res.status_code == 200:
+                            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 本次提报成功，返回结果：" + res.text)
+                            time.sleep(1)
+                            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                        else:
+                            print(
+                                time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 错误：本次提报失败，详情查看：" + res.text)
+                            time.sleep(1)
+                            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                else:
+                    # 判断为已提交
+                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + prompt_info)
+                    time.sleep(1)
+                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
         else:
             print("登录出现异常")
 
