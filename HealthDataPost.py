@@ -132,7 +132,7 @@ class WebSite(object):
 # ！！！！------------改成自己的学号和密码------------！！！！
 # ！！！！-------外部健康文件要改成自己的-------！！！！
 # 加载外部健康文件
-health_file = open("../datapost/students_data.json", "r", encoding="utf-8")
+health_file = open("students_data.json", "r", encoding="utf-8")
 # 编码为python对象
 students = json.loads(health_file.read())
 len_students = len(students)
