@@ -9,6 +9,8 @@ class Student(object):
     ID = ""
     password = ""
     health_data_dict = {}
+    # 你的Server酱SCKEY
+    SCKEY = ""
 
     @classmethod
     def dataPost(cls):
@@ -74,6 +76,15 @@ class Student(object):
                         # 通过返回结果判断本次是否提交成功
                         if "OK" in res.text and res.status_code == 200:
                             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 本次提报成功，返回结果：" + res.text)
+                            # 如果不为空，则进行推送通知
+                            if cls.SCKEY != "":
+                                # Server酱通知服务
+                                ServerChan_res = requests.get(
+                                    'https://sc.ftqq.com/' + cls.SCKEY + '.send?text=' + "健康数据提交：本次提报【成功】！" + '&desp=' + "表单提交返回结果：" + res.text)
+                                if ServerChan_res.status_code == 200:
+                                    print(time.strftime("%Y-%m-%d %H:%M:%S",
+                                                        time.localtime()) + " - 已发送通知信息到Server酱：{}".format(
+                                        ServerChan_res))
                             time.sleep(1)
                             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
                         else:
@@ -142,6 +153,7 @@ for student in students:
     print("正在进行第{}/{}个用户".format(students.index(student) + 1, len_students))
     Student.ID = student["stu_id"]
     Student.password = student["password"]
+    Student.SCKEY = student["SCKEY"]
     Student.health_data_dict = student["health_data_dict"]
     Student.dataPost()
     time.sleep(5)
