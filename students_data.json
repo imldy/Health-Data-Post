@@ -1,9 +1,9 @@
 [
   {
-    "stu_id": "改成你的学号/账号。以下全部内容详细解释请看与此文件同目录的students_data_explain.md（必须改）",
+    "stu_id": "改成你的学号/账号。以下全部内容详细解释请看与此文件同目录的students_data_explain.md（必须看）",
     "password": "改成你的账号密码（必须改）",
     "name": "你的姓名，可选填",
-    "SCKEY": "你的Server酱SCKEY，申请地址http://sc.ftqq.com/，若不开启，则删掉这个提示文字，留空",
+    "SCKEY": "你的Server酱SCKEY",
     "health_data_dict": {
       "id": "",
       "fillDate": "",
