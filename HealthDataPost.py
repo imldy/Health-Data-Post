@@ -140,20 +140,25 @@ class WebSite(object):
     }
 
 
-# ！！！！------------改成自己的学号和密码------------！！！！
-# ！！！！-------外部健康文件要改成自己的-------！！！！
-# 加载外部健康文件
-health_file = open("students_data.json", "r", encoding="utf-8")
-# 编码为python对象
-students = json.loads(health_file.read())
-len_students = len(students)
-# print(len_students)
-# 循环其列表中所有的学生
-for student in students:
-    print("正在进行第{}/{}个用户".format(students.index(student) + 1, len_students))
-    Student.ID = student["stu_id"]
-    Student.password = student["password"]
-    Student.SCKEY = student["SCKEY"]
-    Student.health_data_dict = student["health_data_dict"]
-    Student.dataPost()
-    time.sleep(5)
+def main(a=1, b=1):
+    # ！！！！------------改成自己的学号和密码------------！！！！
+    # ！！！！-------外部健康文件要改成自己的-------！！！！
+    # 加载外部健康文件
+    health_file = open("students_data.json", "r", encoding="utf-8")
+    # 编码为python对象
+    students = json.loads(health_file.read())
+    len_students = len(students)
+    # print(len_students)
+    # 循环其列表中所有的学生
+    for student in students:
+        print("正在进行第{}/{}个用户".format(students.index(student) + 1, len_students))
+        Student.ID = student["stu_id"]
+        Student.password = student["password"]
+        Student.SCKEY = student["SCKEY"]
+        Student.health_data_dict = student["health_data_dict"]
+        Student.dataPost()
+        time.sleep(5)
+
+
+if __name__ == '__main__':
+    main()
