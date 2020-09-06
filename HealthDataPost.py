@@ -157,7 +157,9 @@ def main(a=1, b=1):
         Student.SCKEY = student["SCKEY"]
         Student.health_data_dict = student["health_data_dict"]
         Student.dataPost()
-        time.sleep(5)
+        # 如果当前已经提交的学生信息不是最后一个，则延迟之后再进行提交下一个
+        if student != students[-1]:
+            time.sleep(2)
 
 
 if __name__ == '__main__':
