@@ -12,13 +12,7 @@
 
 [点我下载](https://github.com/imldy/health-data-post/archive/master.zip)
 
-## 如何修改并在本地运行代码？
-
-以下是我所使用的软件/库版本，其他版本请自行测试。
-
-请安装：![Python](https://img.shields.io/badge/Python-3.8.2-blue.svg)![PiP](https://img.shields.io/badge/pip-20.0.2-5e7c85.svg)![lxml](https://img.shields.io/badge/lxml-4.5.0-Lime.svg)![Requests](https://img.shields.io/badge/requests-2.23.0-yellowgreen.svg)![urllib3](https://img.shields.io/badge/urllib3-1.25.8-Tomato.svg)
-
-## 如何使用代码做到自动上报？
+## 如何做到自动上报？
 
 ### 1、先设置自己的账号、密码、健康信息
 
@@ -27,6 +21,14 @@
 ### 2、设置定时启动
 
 **定时启动说明：[Regular_operation.md](./Regular_operation.md)**
+
+## 如何修改并在本地运行代码？
+
+注意！如果你仅仅是想自动上报，完全不需要修改代码，也不需要做这一步，这一步是为软件开发准备的。
+
+以下是我所使用的软件/库版本，其他版本请自行测试。
+
+请安装：![Python](https://img.shields.io/badge/Python-3.8.2-blue.svg)![PiP](https://img.shields.io/badge/pip-20.0.2-5e7c85.svg)![lxml](https://img.shields.io/badge/lxml-4.5.0-Lime.svg)![Requests](https://img.shields.io/badge/requests-2.23.0-yellowgreen.svg)![urllib3](https://img.shields.io/badge/urllib3-1.25.8-Tomato.svg)
 
 ## 注意事项
 
