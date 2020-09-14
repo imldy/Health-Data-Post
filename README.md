@@ -20,11 +20,11 @@
 
 ### 1、先设置自己的账号、密码、健康信息
 
-**用户信息说明：[students_data_explain.md](./students_data_explain.md)**
+**用户信息说明：[students_data_explain.md](./doc/students_data_explain.md)**
 
 ### 2、设置定时启动
 
-**定时启动说明：[Regular_operation.md](./Regular_operation.md)**
+**定时启动说明：[Regular_operation.md](./doc/Regular_operation.md)**
 
 ## 如何修改并在本地运行代码？
 
