@@ -16,6 +16,18 @@
 
 [点我下载](https://github.com/imldy/health-data-post/archive/master.zip)
 
+## 各个文件作用说明
+
+1. doc/——说明文档/教程
+
+2. HealthDataPost.py——主程序
+
+3. README.md——项目相关信息
+
+4. students_data.json——主程序需要的配置文件
+
+其中1、3为程序运行的必须项。
+
 ## 如何做到自动上报？
 
 ### 1、先设置自己的账号、密码、健康信息
