@@ -4,6 +4,10 @@
 
 免去手动操作的烦恼。
 
+## 注意事项
+
+程序只会提交提前设定好的身体健康数据，所以若身体情况发送变动必须及时更新数据，否则学校将会收到错误信息，防疫工作也会受到影响。
+
 ## 如何下载代码？
 
 `git clone git@github.com:imldy/health-data-post.git`
@@ -29,10 +33,6 @@
 以下是我所使用的软件/库版本，其他版本请自行测试。
 
 请安装：![Python](https://img.shields.io/badge/Python-3.8.2-blue.svg)![PiP](https://img.shields.io/badge/pip-20.0.2-5e7c85.svg)![lxml](https://img.shields.io/badge/lxml-4.5.0-Lime.svg)![Requests](https://img.shields.io/badge/requests-2.23.0-yellowgreen.svg)![urllib3](https://img.shields.io/badge/urllib3-1.25.8-Tomato.svg)
-
-## 注意事项
-
-程序只会提交提前设定好的身体健康数据，所以若身体情况发送变动必须及时更新数据，否则学校将会收到错误信息，防疫工作也会受到影响。
 
 ## 免责声明
 
