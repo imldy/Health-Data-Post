@@ -5,6 +5,14 @@ import time
 import json
 
 
+def getNowTime():
+    '''
+    获取当前已格式化的时间，格式：****-**-** **:**:**
+    :return: 返回格式化后的当前时间
+    '''
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+
 class Student(object):
     ID = ""
     password = ""
@@ -24,7 +32,7 @@ class Student(object):
         res0 = session.post(url=WebSite.login_api, data=WebSite.login_data, headers=WebSite.login_headers)
         if res0.status_code == 200:
             # 登录成功
-            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 登录成功")
+            print(getNowTime() + " - 登录成功")
             time.sleep(0.5)
 
             # 设置表单页面的url和请求头中的Referer
@@ -59,10 +67,10 @@ class Student(object):
                     # 固定位置未找到已提交的提示信息
                     if ("您已上报" in res1) and ("健康信息" in res1):
                         # 如果固定位置没找到提示信息，但是网页其他地方找到了
-                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 警告：网站发生变化，推荐手动确认网页情况，以免发生错误")
+                        print(getNowTime() + " - 警告：网站发生变化，推荐手动确认网页情况，以免发生错误")
                     else:
                         # 如果固定位置没找到提示信息，且网页源码都未发现相关提示
-                        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 判断为还未提报今日身体信息")
+                        print(getNowTime() + " - 判断为还未提报今日身体信息")
                         time.sleep(3)
                         # 提交的准备工作，设置当前日期。
                         cls.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
@@ -75,7 +83,7 @@ class Student(object):
                         res = session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
                         # 通过返回结果判断本次是否提交成功
                         if "OK" in res.text and res.status_code == 200:
-                            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 本次提报成功，返回结果：" + res.text)
+                            print(getNowTime() + " - 本次提报成功，返回结果：" + res.text)
                             # 如果不为空，则进行推送通知
                             if cls.SCKEY != "":
                                 # Server酱通知服务
@@ -86,17 +94,17 @@ class Student(object):
                                                         time.localtime()) + " - 已发送通知信息到Server酱：{}".format(
                                         ServerChan_res))
                             time.sleep(1)
-                            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                            print(getNowTime() + " - " + "提报结束")
                         else:
                             print(
-                                time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - 错误：本次提报失败，详情查看：" + res.text)
+                                getNowTime() + " - 错误：本次提报失败，详情查看：" + res.text)
                             time.sleep(1)
-                            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                            print(getNowTime() + " - " + "提报结束")
                 else:
                     # 判断为已提交
-                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + prompt_info)
+                    print(getNowTime() + " - " + prompt_info)
                     time.sleep(1)
-                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + " - " + "提报结束")
+                    print(getNowTime() + " - " + "提报结束")
         else:
             print("登录出现异常")
 
