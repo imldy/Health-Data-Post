@@ -71,7 +71,7 @@ class Student(object):
                     else:
                         # 如果固定位置没找到提示信息，且网页源码都未发现相关提示
                         print(getNowTime() + " - 判断为还未提报今日身体信息")
-                        time.sleep(3)
+                        time.sleep(1)
                         # 提交的准备工作，设置当前日期。
                         cls.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
                         # 提交
