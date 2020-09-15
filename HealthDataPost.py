@@ -90,14 +90,11 @@ class Student(object):
                                 ServerChan_res = requests.get(
                                     'https://sc.ftqq.com/' + cls.SCKEY + '.send?text=' + "健康数据提交：本次提报【成功】！" + '&desp=' + "表单提交返回结果：" + res.text)
                                 if ServerChan_res.status_code == 200:
-                                    print(time.strftime("%Y-%m-%d %H:%M:%S",
-                                                        time.localtime()) + " - 已发送通知信息到Server酱：{}".format(
-                                        ServerChan_res))
+                                    print(getNowTime() + " - 已发送通知信息到Server酱：{}".format(ServerChan_res))
                             time.sleep(1)
                             print(getNowTime() + " - " + "提报结束")
                         else:
-                            print(
-                                getNowTime() + " - 错误：本次提报失败，详情查看：" + res.text)
+                            print(getNowTime() + " - 错误：本次提报失败，详情查看：" + res.text)
                             time.sleep(1)
                             print(getNowTime() + " - " + "提报结束")
                 else:
