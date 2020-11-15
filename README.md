@@ -20,13 +20,13 @@
 
 1. doc/——说明文档/教程
 
-2. HealthDataPost.py——主程序
+2. **HealthDataPost.py——主程序**
 
 3. README.md——项目相关信息
 
-4. students_data.json——主程序需要的配置文件
+4. **students_data.json——主程序需要的配置文件**
 
-其中2、4为程序运行的必须项。
+其中**2、4**为程序运行的**必须项**。
 
 ## 如何做到自动上报？
 
