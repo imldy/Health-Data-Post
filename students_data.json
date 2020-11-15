@@ -1,9 +1,9 @@
 [
   {
-    "stu_id": "改成你的学号/账号。以下全部内容详细解释请看doc/students_data_explain.md（必须看）",
-    "password": "改成你的账号密码（必须改）",
+    "stu_id": "改成你的学号/账号。以下全部内容详细解释请看doc/students_data_explain.md（必须看！！）",
+    "password": "改成你的账号密码（必须改！！）",
     "name": "你的姓名，可选填",
-    "SCKEY": "你的Server酱SCKEY",
+    "SCKEY": "填你的Server酱SCKEY！！，填上提交成功后会用微信通知你，如果不用这个功能，把这一段字删除然后留空就行",
     "health_data_dict": {
       "id": "",
       "fillDate": "",
