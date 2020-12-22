@@ -51,6 +51,12 @@ class Student(object):
         res = self.session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
         return res
 
+    def serverChanPush(self, text, desp):
+        # Server酱通知服务
+        serverChan_res = requests.get(
+            'https://sc.ftqq.com/' + self.SCKEY + '.send?text=' + text + '&desp=' + "表单提交返回结果：" + desp)
+        return serverChan_res
+
     def dataPost(self):
         # 调用login方法进行登录
         res0 = self.login()
@@ -106,9 +112,7 @@ class Student(object):
                             print(getNowTime() + " - 本次提报成功，返回结果：" + res.text)
                             # 如果不为空，则进行推送通知
                             if self.SCKEY != "":
-                                # Server酱通知服务
-                                ServerChan_res = requests.get(
-                                    'https://sc.ftqq.com/' + self.SCKEY + '.send?text=' + "健康数据提交：本次提报【成功】！" + '&desp=' + "表单提交返回结果：" + res.text)
+                                ServerChan_res = self.serverChanPush("健康数据提交：本次提报【成功】！", res.text)
                                 if ServerChan_res.status_code == 200:
                                     print(getNowTime() + " - 已发送通知信息到Server酱：{}".format(ServerChan_res))
                             time.sleep(1)
