@@ -20,16 +20,16 @@ class Student(object):
         self.health_data_dict = health_data_dict
         # 你的Server酱SCKEY
         self.SCKEY = SCKEY
+        # 保持访问连接
+        self.session = requests.session()
 
     def dataPost(self):
         # 设置登录时所要的数据（账号——即学号和密码）
         WebSite.login_data["username"] = self.ID
         WebSite.login_data["password"] = self.password
 
-        # 保持访问连接
-        session = requests.session()
         # 登录
-        res0 = session.post(url=WebSite.login_api, data=WebSite.login_data, headers=WebSite.login_headers)
+        res0 = self.session.post(url=WebSite.login_api, data=WebSite.login_data, headers=WebSite.login_headers)
         if res0.status_code == 200:
             # 登录成功
             print(getNowTime() + " - 登录成功")
@@ -40,7 +40,7 @@ class Student(object):
             # WebSite.form_web_url = WebSite.form_web_url_head + cls.ID
             WebSite.form_web_headers["Referer"] = WebSite.form_web_url
             # 请求表单所在的网页
-            res1 = session.get(url=WebSite.form_web_url, headers=WebSite.form_web_headers).content.decode("UTF-8")
+            res1 = self.session.get(url=WebSite.form_web_url, headers=WebSite.form_web_headers).content.decode("UTF-8")
             html1 = etree.HTML(res1)
 
             # 这里的代码用于更新表单，正常每天首次提交用不到这些代码
@@ -81,7 +81,7 @@ class Student(object):
                         # 设置提交数据api的请求头中的Referer
                         WebSite.submit_api_headers["Referer"] = WebSite.form_web_url
 
-                        res = session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
+                        res = self.session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
                         # 通过返回结果判断本次是否提交成功
                         if "OK" in res.text and res.status_code == 200:
                             print(getNowTime() + " - 本次提报成功，返回结果：" + res.text)
