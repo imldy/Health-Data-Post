@@ -23,13 +23,18 @@ class Student(object):
         # 保持访问连接
         self.session = requests.session()
 
-    def dataPost(self):
+    def login(self):
         # 设置登录时所要的数据（账号——即学号和密码）
         WebSite.login_data["username"] = self.ID
         WebSite.login_data["password"] = self.password
 
         # 登录
         res0 = self.session.post(url=WebSite.login_api, data=WebSite.login_data, headers=WebSite.login_headers)
+        return res0
+
+    def dataPost(self):
+        # 调用login方法进行登录
+        res0 = self.login()
         if res0.status_code == 200:
             # 登录成功
             print(getNowTime() + " - 登录成功")
