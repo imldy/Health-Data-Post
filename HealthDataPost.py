@@ -14,17 +14,17 @@ def getNowTime():
 
 
 class Student(object):
-    ID = ""
-    password = ""
-    health_data_dict = {}
-    # 你的Server酱SCKEY
-    SCKEY = ""
+    def __init__(self, ID, password, health_data_dict, SCKEY):
+        self.ID = ID
+        self.password = password
+        self.health_data_dict = health_data_dict
+        # 你的Server酱SCKEY
+        self.SCKEY = SCKEY
 
-    @classmethod
-    def dataPost(cls):
+    def dataPost(self):
         # 设置登录时所要的数据（账号——即学号和密码）
-        WebSite.login_data["username"] = cls.ID
-        WebSite.login_data["password"] = cls.password
+        WebSite.login_data["username"] = self.ID
+        WebSite.login_data["password"] = self.password
 
         # 保持访问连接
         session = requests.session()
@@ -73,10 +73,11 @@ class Student(object):
                         print(getNowTime() + " - 判断为还未提报今日身体信息")
                         time.sleep(1)
                         # 提交的准备工作，设置当前日期。
-                        cls.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
+                        self.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
                         # 提交
                         # 直接提交汉字可能会出错，URL编码处理
-                        WebSite.submit_api_url_and_data = WebSite.submit_api_url + parse.urlencode(cls.health_data_dict)
+                        WebSite.submit_api_url_and_data = WebSite.submit_api_url + parse.urlencode(
+                            self.health_data_dict)
                         # 设置提交数据api的请求头中的Referer
                         WebSite.submit_api_headers["Referer"] = WebSite.form_web_url
 
@@ -85,10 +86,10 @@ class Student(object):
                         if "OK" in res.text and res.status_code == 200:
                             print(getNowTime() + " - 本次提报成功，返回结果：" + res.text)
                             # 如果不为空，则进行推送通知
-                            if cls.SCKEY != "":
+                            if self.SCKEY != "":
                                 # Server酱通知服务
                                 ServerChan_res = requests.get(
-                                    'https://sc.ftqq.com/' + cls.SCKEY + '.send?text=' + "健康数据提交：本次提报【成功】！" + '&desp=' + "表单提交返回结果：" + res.text)
+                                    'https://sc.ftqq.com/' + self.SCKEY + '.send?text=' + "健康数据提交：本次提报【成功】！" + '&desp=' + "表单提交返回结果：" + res.text)
                                 if ServerChan_res.status_code == 200:
                                     print(getNowTime() + " - 已发送通知信息到Server酱：{}".format(ServerChan_res))
                             time.sleep(1)
@@ -157,11 +158,9 @@ def main(a=1, b=1):
     # 循环其列表中所有的学生
     for student in students:
         print("正在进行第{}/{}个用户".format(students.index(student) + 1, len_students))
-        Student.ID = student["stu_id"]
-        Student.password = student["password"]
-        Student.SCKEY = student["SCKEY"]
-        Student.health_data_dict = student["health_data_dict"]
-        Student.dataPost()
+        # 创建学生实例
+        stu = Student(student["stu_id"],student["password"],student["health_data_dict"],student["SCKEY"])
+        stu.dataPost()
         # 如果当前已经提交的学生信息不是最后一个，则延迟之后再进行提交下一个
         if student != students[-1]:
             time.sleep(2)
