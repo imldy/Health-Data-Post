@@ -24,6 +24,10 @@ class Student(object):
         self.session = requests.session()
 
     def login(self):
+        '''
+        登录
+        :return: 返回登录的响应信息
+        '''
         # 设置登录时所要的数据（账号——即学号和密码）
         WebSite.login_data["username"] = self.ID
         WebSite.login_data["password"] = self.password
