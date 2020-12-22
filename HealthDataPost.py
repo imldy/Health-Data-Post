@@ -178,7 +178,7 @@ def main(a=1, b=1):
     for student in students:
         print("正在进行第{}/{}个用户".format(students.index(student) + 1, len_students))
         # 创建学生实例
-        stu = Student(student["stu_id"],student["password"],student["health_data_dict"],student["SCKEY"])
+        stu = Student(student["stu_id"], student["password"], student["health_data_dict"], student["SCKEY"])
         stu.dataPost()
         # 如果当前已经提交的学生信息不是最后一个，则延迟之后再进行提交下一个
         if student != students[-1]:
