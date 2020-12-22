@@ -36,6 +36,21 @@ class Student(object):
         res0 = self.session.post(url=WebSite.login_api, data=WebSite.login_data, headers=WebSite.login_headers)
         return res0
 
+    def submit(self):
+        '''
+        执行提交信息的动作
+        :return:
+        '''
+        # 提交
+        # 直接提交汉字可能会出错，URL编码处理
+        WebSite.submit_api_url_and_data = WebSite.submit_api_url + parse.urlencode(
+            self.health_data_dict)
+        # 设置提交数据api的请求头中的Referer
+        WebSite.submit_api_headers["Referer"] = WebSite.form_web_url
+
+        res = self.session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
+        return res
+
     def dataPost(self):
         # 调用login方法进行登录
         res0 = self.login()
@@ -83,14 +98,9 @@ class Student(object):
                         time.sleep(1)
                         # 提交的准备工作，设置当前日期。
                         self.health_data_dict["fillDate"] = html1.xpath('/html//input[@name="ddate"]/@value')
-                        # 提交
-                        # 直接提交汉字可能会出错，URL编码处理
-                        WebSite.submit_api_url_and_data = WebSite.submit_api_url + parse.urlencode(
-                            self.health_data_dict)
-                        # 设置提交数据api的请求头中的Referer
-                        WebSite.submit_api_headers["Referer"] = WebSite.form_web_url
 
-                        res = self.session.get(url=WebSite.submit_api_url_and_data, headers=WebSite.submit_api_headers)
+                        # 提交动作
+                        res = self.submit()
                         # 通过返回结果判断本次是否提交成功
                         if "OK" in res.text and res.status_code == 200:
                             print(getNowTime() + " - 本次提报成功，返回结果：" + res.text)
