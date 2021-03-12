@@ -21,7 +21,7 @@ update: 2020年11月15日11点36分
 | stu_id           | **— 是 —** | 学生登录智慧山水平台http://sso.sdwcvc.cn/ 或者“智慧山水”APP的的账号，即学号 |
 | password         | **— 是 —** | 登录密码                                                     |
 | name             | 否         | 可选，仅用做管理人员方便区分多个用户                         |
-| SCKEY            | 否         | 你的Server酱SCKEY，作用：推送成功提交的通知到微信，申请地址<http://sc.ftqq.com/>，若不开启，则留空即可。 |
+| SCKEY            | 否         | 你的Server酱SCKEY/SendKey，作用：推送成功提交的通知到你设置的通道，申请地址<http://sc.ftqq.com/>(即将弃用)，或<https://sct.ftqq.com/>(推荐)，若不开启，则留空即可。 |
 | health_data_dict | **— 是 —** | 学生健康信息字典，即学生健康信息组成的字典                   |
 
 ##### 学生健康信息字典中包含

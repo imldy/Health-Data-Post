@@ -57,6 +57,12 @@ class Student(object):
             'https://sc.ftqq.com/' + self.SCKEY + '.send?text=' + text + '&desp=' + "表单提交返回结果：" + desp)
         return serverChan_res
 
+    def serverChanTurboPush(self, text, desp):
+        # Server酱通知服务
+        serverChan_res = requests.get(
+            'https://sctapi.ftqq.com/' + self.SCKEY + '.send?title=' + text + '&desp=' + "表单提交返回结果：" + desp)
+        return serverChan_res
+
     def dataPost(self):
         # 调用login方法进行登录
         res0 = self.login()
@@ -112,7 +118,15 @@ class Student(object):
                             print(getNowTime() + " - 本次提报成功，返回结果：" + res.text)
                             # 如果不为空，则进行推送通知
                             if self.SCKEY != "":
-                                ServerChan_res = self.serverChanPush("健康数据提交：本次提报【成功】！", res.text)
+                                if self.SCKEY.startswith("SCU", 0, 3):
+                                    print(getNowTime() + " - 开始通过Server酱普通版推送消息")
+                                    ServerChan_res = self.serverChanPush("健康数据提交：本次提报【成功】！", res.text)
+                                elif self.SCKEY.startswith("SCT", 0, 3):
+                                    print(getNowTime() + " - 开始通过Server酱Turbo版推送消息")
+                                    ServerChan_res = self.serverChanTurboPush("健康数据提交：本次提报【成功】！", res.text)
+                                else:
+                                    print(getNowTime() + " - 未知类型的SCKEY/SendKey，请检查")
+                                    return
                                 if ServerChan_res.status_code == 200:
                                     print(getNowTime() + " - 已发送通知信息到Server酱：{}".format(ServerChan_res))
                             time.sleep(1)
