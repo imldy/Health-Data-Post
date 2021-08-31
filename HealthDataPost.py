@@ -128,7 +128,7 @@ class Student(object):
                                     print(getNowTime() + " - 未知类型的SCKEY/SendKey，请检查")
                                     return
                                 if ServerChan_res.status_code == 200:
-                                    print(getNowTime() + " - 已发送通知信息到Server酱：{}".format(ServerChan_res))
+                                    print(getNowTime() + " - 已发送通知信息到Server酱：{}".format(ServerChan_res.text))
                             time.sleep(1)
                             print(getNowTime() + " - " + "提报结束")
                         else:
