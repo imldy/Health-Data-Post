@@ -35,7 +35,7 @@
 
 由于代码引入了python的lxml库，但是腾讯云函数提供的环境中又没有此依赖，所以需要手动上传。
 
-依赖下载地址：https://wwa.lanzous.com/ivuSHeukg2h
+依赖下载地址：https://wwa.lanzoui.com/ivuSHeukg2h
 
 下载到一个压缩包。
 
