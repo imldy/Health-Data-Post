@@ -47,7 +47,7 @@
 | password | 是    | 登录密码                                     |
 | name     | 是    | 在GUI中显示的字段，一般填写学生姓名                      |
 
-
-[下载exe程序](https://github.com/3P1r1t/Health-Data-Post/releases/tag/exe%E7%A8%8B%E5%BA%8F%E5%8C%85)
+##下载链接
+[下载即用版exe程序](https://github.com/3P1r1t/Health-Data-Post/releases/tag/exe%E7%A8%8B%E5%BA%8F%E5%8C%85)
 
 
