@@ -46,6 +46,6 @@
 | stu_id   | 是    | 学生登录智慧山水平台http://sso.sdwcvc.cn/ 或者“智慧山水”APP的的账号，即学号 |
 | password | 是    | 登录密码                                     |
 | name     | 是    | 在GUI中显示的字段，一般填写学生姓名                      |
-
+[下载exe程序](https://github.com/3P1r1t/Health-Data-Post/releases/tag/exe%E7%A8%8B%E5%BA%8F%E5%8C%85)
 
 
